@@ -24,7 +24,7 @@ $ npm run clean
 $ npm run build:watch
 ```
 
-# Build with Gulp
+# Build with Gulp (Recommended)
 ```
 $ gulp
 ```

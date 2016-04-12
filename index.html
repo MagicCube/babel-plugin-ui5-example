@@ -4,20 +4,18 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>Example of babel-plugin-ui5</title>
 
-<script src="build/sap/ui5/1/resources/sap-ui-core.js"
+<script src="assets/sap/ui5/1/resources/sap-ui-core.js"
     id="sap-ui-bootstrap"
-    data-sap-ui-resourceroots='{"example": "./build/example"}'></script>
+    data-sap-ui-resourceroots='{"example": "./assets/example"}'></script>
 
 </head>
 <body>
     <h1>babel-plugin-ui5-example</h1>
     <p>An example of how to use [babel-ui5-plugin](https://github.com/MagicCube/babel-plugin-ui5) with Babel 6.</p>
     <h2>How to build</h2>
-    <code>
-    $ npm run build
-    </code>
+    <p>Please read the README.md first.</p>
     <h2>How to run</h2>
     <p>Please open your console to see the results.</p>
 </body>
@@ -30,7 +28,7 @@ function log(message)
 
 sap.ui.getCore().attachInit(function() {
     log("SAP UI5 is now loaded.");
-    jQuery.sap.require("example/all-dbg");
+    jQuery.sap.require("example/all");
 
     const animal = new example.obj.Cat();
     animal.callMe();
