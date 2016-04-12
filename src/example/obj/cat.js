@@ -3,6 +3,7 @@
   *----------------------------------------------------------------------*/
 
 import Animal from "./Animal";
+import sounds from "./sounds";
 
 export default class Cat extends Animal
 {
@@ -18,9 +19,9 @@ export default class Cat extends Animal
     {
         super.callMe();
         const myAlert = (sender, message) => {
-            alert(`${sender}: ${message}`);
+            console.log(`${sender}: ${message}`);
         };
-        console.log("cat", "Miao~");
+        myAlert(this.getNickName(), sounds.cat);
     }
 
     static createCat(nickName)
