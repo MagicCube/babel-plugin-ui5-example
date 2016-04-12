@@ -2,7 +2,7 @@
   * Author       : Henry Li <henry.li03@sap.com>
   *----------------------------------------------------------------------*/
 
-import Animal from "./animal";
+import Animal from "./Animal";
 
 export default class Cat extends Animal
 {
@@ -18,7 +18,7 @@ export default class Cat extends Animal
         const myAlert = (sender, message) => {
             alert(`${sender}: ${message}`);
         };
-        myAlert("cat", "Miao~");
+        console.log("cat", "Miao~");
     }
 
     /*static*/ createCat(nickName)
