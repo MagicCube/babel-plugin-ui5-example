@@ -30,7 +30,7 @@ sap.ui.getCore().attachInit(function() {
     log("SAP UI5 is now loaded.");
     jQuery.sap.require("example/all");
 
-    const animal = new example.obj.Cat();
+    const animal = example.obj.Cat.createCat("Kitty");
     animal.callMe();
 });
 </script>

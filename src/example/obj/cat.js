@@ -6,6 +6,8 @@ import Animal from "./Animal";
 
 export default class Cat extends Animal
 {
+    static staticVariable = 123;
+
     init()
     {
         super.init();
@@ -21,7 +23,7 @@ export default class Cat extends Animal
         console.log("cat", "Miao~");
     }
 
-    /*static*/ createCat(nickName)
+    static createCat(nickName)
     {
         const cat = new example.obj.Cat({
             nickName
