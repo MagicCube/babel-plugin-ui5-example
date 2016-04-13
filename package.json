@@ -37,8 +37,10 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
+    "gulp-ui5-lib": "^1.0.0",
     "rimraf": "^2.5.2",
     "run-sequence": "^1.1.5"
   }

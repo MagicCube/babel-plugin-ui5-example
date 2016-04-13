@@ -2,9 +2,11 @@ const babel = require("gulp-babel");
 const concat = require("gulp-concat");
 const del = require("del");
 const gulp = require("gulp");
+const less = require("gulp-less");
 const rename = require("gulp-rename");
 const runSequence = require("run-sequence");
 const uglify = require("gulp-uglify");
+const ui5Lib = require("gulp-ui5-lib");
 
 const SRC_ROOT = "./src";
 const ASSETS_ROOT = "./assets";
@@ -19,7 +21,7 @@ gulp.task("default", [ "build" ]);
 
 gulp.task("clean", cb => {
     del(`${ASSETS_ROOT}/example`).then(() => {
-        cb()
+        cb();
     }, reason => {
         cb(reason);
     });
@@ -28,24 +30,12 @@ gulp.task("clean", cb => {
 gulp.task("build", [ "clean" ], cb => {
     // Let's build modules one by one,
     const params = MODULES.map(module => `build:${module}`);
-    // and uglify *.all-dbg in the end.
-    params.push("uglify-js");
-    console.log("Building tasks:", params);
 
     // Don't forget our callback.
     params.push(cb);
 
     // Execute the workflow.
     runSequence.apply(this, params);
-});
-
-gulp.task("uglify-js", () => {
-    return gulp.src(`${ASSETS_ROOT}/**/all-dbg.js`)
-        .pipe(uglify())
-        .pipe(rename(path => {
-            path.basename = "all";
-        }))
-        .pipe(gulp.dest(`${ASSETS_ROOT}`));
 });
 
 
@@ -56,8 +46,9 @@ function generateBuildModuleTask(module)
 {
     gulp.task(`build:${module}`, cb => {
         runSequence(
+            `build-less:${module}`,
             `build-js:${module}`,
-            `concat-js:${module}`,
+            `build-library:${module}`,
             cb
         );
     });
@@ -68,9 +59,16 @@ function generateBuildModuleTask(module)
             .pipe(gulp.dest(`${ASSETS_ROOT}/${module}`));
     });
 
-    gulp.task(`concat-js:${module}`, () => {
+    gulp.task(`build-less:${module}`, () => {
+        return gulp.src(`${SRC_ROOT}/${module}/themes/base/library.less`)
+            .pipe(less())
+            .pipe(gulp.dest(`${ASSETS_ROOT}/${module}/themes/base`));
+    });
+
+    gulp.task(`build-library:${module}`, () => {
         return gulp.src(`${ASSETS_ROOT}/${module}/**/*.js`)
-            .pipe(concat("all-dbg.js"))
-            .pipe(gulp.dest(`${ASSETS_ROOT}/${module}`));
+                   .pipe(uglify())
+                   .pipe(ui5Lib(`${module}`))
+                   .pipe(gulp.dest(`${ASSETS_ROOT}/${module}`));
     });
 }

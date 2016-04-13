@@ -6,9 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Example of babel-plugin-ui5</title>
 
-<script src="assets/sap/ui5/1/resources/sap-ui-core.js"
+<script src="assets/sap/resources/sap-ui-core.js"
     id="sap-ui-bootstrap"
-    data-sap-ui-resourceroots='{"example": "./assets/example"}'></script>
+    data-sap-ui-resourceroots='{"example": "./assets/example"}'
+    data-sap-ui-libs="example">
+</script>
 
 </head>
 <body>
@@ -28,10 +30,11 @@ function log(message)
 
 sap.ui.getCore().attachInit(function() {
     log("SAP UI5 is now loaded.");
-    jQuery.sap.require("example/all");
 
-    const animal = example.obj.Cat.createCat("Kitty");
-    animal.callMe();
+    sap.ui.define(["example/obj/Cat"], function(Cat) {
+        const animal = example.obj.Cat.createCat("Kitty");
+        animal.callMe();
+    });
 });
 </script>
 </html>
