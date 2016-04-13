@@ -8,8 +8,8 @@ const runSequence = require("run-sequence");
 const uglify = require("gulp-uglify");
 const ui5Lib = require("gulp-ui5-lib");
 
-const SRC_ROOT = "./src";
-const ASSETS_ROOT = "./assets";
+const SRC_ROOT = "./client-src";
+const ASSETS_ROOT = "./public/assets";
 const MODULES = [ "example" ];
 
 MODULES.forEach(module => {
