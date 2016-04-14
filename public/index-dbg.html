@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Example of babel-plugin-ui5</title>
+
+<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+    id="sap-ui-bootstrap"
+    data-sap-ui-resourceroots='{"example": "assets/example"}'>
+</script>
+
+</head>
+<body>
+    <h1>babel-plugin-ui5-example - Debug mode</h1>
+    <p>An example of how to use [babel-ui5-plugin](https://github.com/MagicCube/babel-plugin-ui5) with Babel 6.</p>
+    <h2>How to build</h2>
+    <p>Please read the README.md first.</p>
+    <h2>How to run</h2>
+    <p>Please open your console to see the results.</p>
+</body>
+
+<script>
+function log(message)
+{
+    console.log("<babel-plugin-ui5-example> " + message);
+}
+
+sap.ui.getCore().attachInit(function() {
+    log("SAP UI5 is now loaded.");
+
+    sap.ui.define(["example/obj/Cat"], function(Cat) {
+        const animal = example.obj.Cat.createCat("Kitty");
+        animal.callMe();
+    });
+});
+</script>
+</html>

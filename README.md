@@ -12,6 +12,10 @@ $ gulp
 ```
 `gulp clean` and `gulp build` are supported, and module-based building command `gulp build:example` is also supported
 
+## Build with Sourcemaps
+```
+$ npm run build:sourcemaps
+```
 
 ## Run
 ```

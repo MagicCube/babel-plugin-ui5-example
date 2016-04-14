@@ -26,6 +26,7 @@ export default class Animal extends ManagedObject
 
     callMe()
     {
+        debugger;
         console.log(`I'm a ${this.getType()}. Call me ${this.getNickName()}.`);
     }
 }

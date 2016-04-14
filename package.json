@@ -15,7 +15,8 @@
     "es6"
   ],
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build:sourcemaps": "babel ./client-src -d ./public/assets --source-maps inline"
   },
   "repository": {
     "type": "git",
