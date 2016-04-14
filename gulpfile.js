@@ -45,6 +45,8 @@ gulp.task("dev", [ "clean" ], cb => {
     // Let's build modules one by one,
     const params = MODULES.map(module => `build-dev:${module}`);
 
+    params.unshift("server:start");
+
     // Don't forget our callback.
     params.push(cb);
 
@@ -104,7 +106,6 @@ function generateBuildDevModuleTask(module)
             [
                 `build-dev-js:${module}`,
                 `build-dev-less:${module}`,
-                `server:start`
             ],
             cb
         );
