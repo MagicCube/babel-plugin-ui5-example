@@ -1,6 +1,7 @@
 const babel = require("gulp-babel");
 const concat = require("gulp-concat");
 const del = require("del");
+const express = require("express");
 const gulp = require("gulp");
 const less = require("gulp-less");
 const rename = require("gulp-rename");
@@ -51,7 +52,14 @@ gulp.task("dev", [ "clean" ], cb => {
     runSequence.apply(this, params);
 });
 
-
+gulp.task("server:start", cb => {
+    const app = express();
+    app.use(express.static("./public"));
+    app.listen(8080, () => {
+        console.log("The dev-server is now running. Please visit http://localhost:8080/");
+        cb();
+    });
+});
 
 
 
@@ -94,8 +102,9 @@ function generateBuildDevModuleTask(module)
     gulp.task(`build-dev:${module}`, cb => {
         runSequence(
             [
-                `build-dev-less:${module}`,
                 `build-dev-js:${module}`,
+                `build-dev-less:${module}`,
+                `server:start`
             ],
             cb
         );
@@ -109,10 +118,10 @@ function generateBuildDevModuleTask(module)
                    .pipe(gulp.dest(`${ASSETS_ROOT}/${module}`));
     });
 
-    gulp.task(`build-dev-less:${module}`, () => {
-        return gulp.src(`${SRC_ROOT}/${module}/themes/base/library.less`)
-            .pipe(watch(`${SRC_ROOT}/${module}/themes/base/**/*.less`))
-            .pipe(less())
-            .pipe(gulp.dest(`${ASSETS_ROOT}/${module}/themes/base`));
+    gulp.task(`build-dev-less:${module}`, [`build-less:${module}`], () => {
+        const sourceFiles = `${SRC_ROOT}/${module}/**/*.less`;
+        watch(sourceFiles, () => {
+            runSequence(`build-less:${module}`);
+        });
     });
 }

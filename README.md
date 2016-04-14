@@ -22,3 +22,9 @@ $ npm run build:sourcemaps
 $ npm start
 ```
 Open [http://localhost:8080/](http://localhost:8080/) in your browser.
+
+## Debug / Develop
+```
+$ gulp dev
+```
+ Launch development tools in your browser, then open [http://localhost:8080/](http://localhost:8080/).
