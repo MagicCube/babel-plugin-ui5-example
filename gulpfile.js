@@ -4,6 +4,7 @@ const del = require("del");
 const express = require("express");
 const gulp = require("gulp");
 const less = require("gulp-less");
+const minifyCss = require("gulp-minify-css");
 const rename = require("gulp-rename");
 const runSequence = require("run-sequence");
 const uglify = require("gulp-uglify");
@@ -88,6 +89,7 @@ function generateBuildModuleTask(module)
     gulp.task(`build-less:${module}`, () => {
         return gulp.src(`${SRC_ROOT}/${module}/themes/base/library.less`)
             .pipe(less())
+            .pipe(minifyCss())
             .pipe(gulp.dest(`${ASSETS_ROOT}/${module}/themes/base`));
     });
 
