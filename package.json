@@ -30,6 +30,7 @@
   "homepage": "https://github.com/MagicCube/babel-plugin-ui5-example#readme",
   "devDependencies": {
     "babel-cli": "^6.7.5",
+    "babel-loader": "^6.2.4",
     "babel-preset-ui5": "^6",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
@@ -40,8 +41,11 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "gulp-ui5-lib": "^1.0.0",
+    "gulp-watch": "^4.3.6",
     "rimraf": "^2.5.2",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "ui5-loader": "^1.0.0",
+    "webpack": "^1.13.1"
   },
   "dependencies": {
     "express": "^4.13.4"
