@@ -45,7 +45,7 @@
     "gulp-watch": "^4.3.6",
     "rimraf": "^2.5.2",
     "run-sequence": "^1.1.5",
-    "ui5-loader": "^1.0.0",
+    "ui5-loader": "^1.0.3",
     "webpack": "^1.13.1"
   },
   "dependencies": {
